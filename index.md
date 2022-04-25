@@ -7,15 +7,16 @@ Don't use it
 ## TODOs
 Note there is more to-do, this is just the current high priority / next on the list.
 
- - Mute
  - Database management commands (add/remove user, add/remove moderator)
  - `whosent` command
+ - sync moderation across rooms
 
 ## Features
 - Kick
 - Ban + unban
 - Mute
-- Discord moderators may use `;whosent` to discover what matrix user is behind a Discord message
+- Discord moderators may use `whosent` to discover what matrix user is behind a Discord message
+- Userinfo command
 
 ## How
 graim is built with the intention of being Matrix-first. There are a few reasons for this:
