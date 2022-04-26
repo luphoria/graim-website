@@ -14,8 +14,6 @@ First, you will need to create a Discord bot and a Matrix account (which the bot
 Follow the tutorial [here](https://t2bot.io/discord/). You may also run your own bridge, and it is supported; however, that is advanced and out of the scope of this tutorial
 
 ### Create the Discord bot
-<details>
-  <summary>Click to expand...</summary>
 - Navigate to [Discord's application panel](https://discord.com/developers/applications).
 - Click "New Application" - in the top right corner:
 
@@ -32,11 +30,8 @@ Follow the tutorial [here](https://t2bot.io/discord/). You may also run your own
 - Un-check "public bot".
 
 ![image](https://user-images.githubusercontent.com/60309933/165204734-966e8fb2-db6e-486a-b01d-aedbbd74ef65.png)
-</details>
 
 ### Create the Matrix bot user
-<details>
-  <summary>Click to expand...</summary>
 This tutorial is created with [Element](https://app.element.io) in mind.
 - Create a Matrix account like any other. Give it whatever name you'd like.
 - Press the top-left user profile icon, and then press "All settings".
@@ -45,7 +40,6 @@ This tutorial is created with [Element](https://app.element.io) in mind.
 
 ![image](https://user-images.githubusercontent.com/60309933/165205245-39485faa-0f0f-4f3a-8fd8-b448ba8c5f05.png)
 - Copy the access token. **Do not share your access token.** Treat it like your password.
-</details>
 
 ## Download graim
 Open your terminal or command prompt and type these commands:
