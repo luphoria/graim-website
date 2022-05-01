@@ -1,0 +1,69 @@
+<h1 id="setup">Setup</h1>
+<p>If you want to run graim for your own community, this guide should be the one-stop spot to getting everything set up!</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<ul>
+<li>some server (a PC that stays online will do fine) - must have <code>node</code>, <code>git</code>, <code>npm</code></li>
+<li>a Discord account</li>
+<li>a Discord server</li>
+<li>one Matrix room for every Discord channel you would like to bridge</li>
+</ul>
+<h2 id="getting-started">Getting started</h2>
+<p>First, you will need to create a Discord bot and a Matrix account (which the bot will use). </p>
+<h3 id="add-the-bridge-to-your-communities">Add the bridge to your communities</h3>
+<p>Follow the tutorial <a href="https://t2bot.io/discord/">here</a>. You may also run your own bridge, and it is supported; however, that is advanced and out of the scope of this tutorial</p>
+<h2 id="download-graim">Download graim</h2>
+<p>Open your terminal or command prompt and type these commands:</p>
+<pre><code>git <span class="hljs-keyword">clone</span> <span class="hljs-title">https</span>://github.com/luphoria/graim
+cd graim
+npm install
+</code></pre><p>Graim is now installed to your device - but now it needs some configuration.</p>
+<h3 id="create-the-discord-bot">Create the Discord bot</h3>
+<ul>
+<li>Navigate to <a href="https://discord.com/developers/applications">Discord&#39;s application panel</a>.</li>
+<li>Create a new application.</li>
+<li>Go to the Bot section, make note of the token and client ID - you&#39;ll need them later.</li>
+<li>Make sure you have checked &quot;Server Members Intent&quot;!</li>
+</ul>
+<h3 id="create-the-matrix-bot-user">Create the Matrix bot user</h3>
+<ul>
+<li>Create a Matrix account like any other. Give it whatever name you&#39;d like.</li>
+<li>Enter the user settings and find the &quot;Access Token&quot;.</li>
+<li>Copy the access token. <strong>Do not share your access token.</strong> Treat it like your password.</li>
+</ul>
+<h2 id="configure-graim">Configure graim</h2>
+<p>To begin, you are going to need to run some commands.</p>
+<pre><code>cp graimdb<span class="hljs-selector-class">.json</span><span class="hljs-selector-class">.example</span> graimdb<span class="hljs-selector-class">.json</span>
+cd config/default<span class="hljs-selector-class">.yaml</span><span class="hljs-selector-class">.example</span> default.yaml
+</code></pre><p>Now, open config/default.yaml in your preferred text editor.</p>
+<ul>
+<li>set <code>accessToken</code> to whatever your Matrix user&#39;s access token is.</li>
+<li>set <code>autoJoin</code> to <code>true</code> (you will want to disable this after setup but it isn&#39;t a big deal).</li>
+<li>Set <code>discordToken</code> to your Discord bot&#39;s access token.</li>
+<li>Set <code>discordClient</code> to your Discord application&#39;s &quot;client ID&quot; or &quot;application ID&quot;.</li>
+<li>Set <code>discordGuild</code> to the Discord guild (server) you want it to be active in.</li>
+<li>Set <code>discordMutedRole</code> to a role in aforementioned guild, which presumably prevents the user from speaking.</li>
+<li>Configure anything else you want given your situation.</li>
+</ul>
+<p>Graim is now ready for you to run it! Go back to your terminal, and run <code>npm run start:dev</code>.</p>
+<p>Wait a few seconds, and you should see the bot is working!</p>
+<h2 id="invite-graim">Invite graim</h2>
+<p>Now, you have to actually add graim to the communities it is moderating.</p>
+<h3 id="adding-the-discord-bot">Adding the Discord bot</h3>
+<ul>
+<li>Copy your Discord bot&#39;s &quot;application ID&quot; or &quot;client ID&quot; (same variable as <code>discordClient</code>).</li>
+<li>Paste that ID in the following link: <code>https://discordapp.com/api/oauth2/authorize?client_id=</code>&lt;YOUR CLIENT ID HERE&gt;<code>&amp;scope=bot&amp;permissions=8</code></li>
+<li>Complete the steps as Discord autofills them.</li>
+<li>Once graim is in your server, ensure that the <code>graim</code> role in your roles list is placed higher than the <code>muted</code> role - otherwise, graim will crash if you try to mute.</li>
+</ul>
+<h3 id="adding-the-matrix-bot">Adding the Matrix bot</h3>
+<ul>
+<li>Invite the bot to every room needed, as you would any other user</li>
+<li>For each room, make the bot a <code>Moderator</code> (power level 50), and adjust <code>Change permissions</code> in the room to <code>Moderator</code> - this will allow it to change other users&#39; power levels to -1, effectively muting them. Additionally, it is highly recommended you change <code>Notify everyone</code> to <code>Admin</code> - otherwise a user could potentially elevate their permissions via the bot to ping @room.</li>
+</ul>
+<h3 id="adding-yourself-to-the-moderator-list">Adding yourself to the moderator list</h3>
+<p>In order to use any graim commands, you first need to be considered a moderator by graim itself.</p>
+<ul>
+<li>Run <code>;adduser &lt;alias&gt; @user:matrixexample.org @discorduser moderator</code> from an Admin (power level 100) account on Matrix.</li>
+</ul>
+<p>NOTE: Any new moderators you add will also be able to run <code>adduser</code> - whether they have power level 100 or not.</p>
+<p><strong>Congratulations, you have set up graim!</strong></p>
